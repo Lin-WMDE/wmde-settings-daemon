@@ -19,8 +19,12 @@ license=('GPL-3.0-or-later')
 # runtime: pipewire (audio backend), libpulse (pactl helper), udev/systemd-libs
 # (backlight + logind), libxkbcommon (xkb layout switching), dbus, polkit rules,
 # ddcutil (external monitor brightness via ddc-hi). Verify with namcap after build.
+# wireplumber and pipewire-pulse: the audio server runs wpctl (device profiles) and pactl
+# (mono output, non-device nodes) against them, and pipewire alone pulls neither. Without
+# wireplumber no device is routed at all - no sound, the volume applet sees no outputs;
+# without pipewire-pulse every application on the PulseAudio API stays silent.
 depends=('glibc' 'gcc-libs' 'pipewire' 'libpulse' 'libxkbcommon'
-         'systemd-libs' 'dbus' 'ddcutil')
+         'systemd-libs' 'dbus' 'ddcutil' 'wireplumber' 'pipewire-pulse')
 makedepends=('rust' 'cargo' 'git' 'just' 'clang' 'lld' 'pkgconf'
              'pipewire' 'libxkbcommon' 'systemd')
 # !lto: makepkg's LTO option injects -flto into CFLAGS, which the cc crate uses
