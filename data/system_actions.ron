@@ -17,6 +17,8 @@
     // KeyboardBrightnessDown,
     /// Increases keyboard brightness
     // KeyboardBrightnessUp,
+    /// Opens the Start menu: the Start menu applet answers on the session bus
+    Launcher: "busctl --user call fun.wmde.StartMenu /fun/wmde/StartMenu fun.wmde.StartMenu TogglePopupSignal",
     /// Locks the screen
     LockScreen: "loginctl lock-session",
     /// Mutes the active output device
